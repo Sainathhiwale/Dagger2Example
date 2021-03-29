@@ -8,14 +8,17 @@ import com.example.dagger2example.di.CarComponent;
 import com.example.dagger2example.di.DaggerCarComponent;
 import com.example.dagger2example.model.Car;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
-   private Car car;
+   @Inject  Car car;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CarComponent carComponent = DaggerCarComponent.create();
-          car = carComponent.getCar();
+         carComponent.inject(this);
+        //  car = carComponent.getCar();
           car.drive();
     }
 }
